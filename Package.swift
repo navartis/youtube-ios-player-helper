@@ -1,11 +1,11 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.7
 
 import PackageDescription
 
 let package = Package(
     name: "YouTubeiOSPlayerHelper",
     platforms: [
-        .iOS(.v10)
+        .iOS(.v11)
     ],
     products: [
         .library(
@@ -15,12 +15,19 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "YouTubeiOSPlayerHelper",
-            path: "Sources",
-            resources: [
+            name: "YouTubeiOSPlayerHelper-ObjC",
+            dependencies: [],
+            path: "YouTubeiOSPlayerHelper/",
+            publicHeadersPath: "Headers"
+        ),
+        .target(
+           name: "YouTubeiOSPlayerHelper",
+           dependencies: ["YouTubeiOSPlayerHelper-ObjC"],
+           path: "Sources",
+           resources: [
                 .process("Assets")
-            ],
-            publicHeadersPath: "."
+           ]
         )
     ]
 )
+
